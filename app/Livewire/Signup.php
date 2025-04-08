@@ -2,13 +2,31 @@
 
 namespace App\Livewire;
 
+use App\Services\AuthService;
 use Livewire\Component;
 
 
 class Signup extends Component
 {
-    public function save()
+    public $name;
+    public $email;
+    public $password;
+    public $password_confirmation;
+
+
+    public function save(AuthService $authService)
     {
+        $validate = $this->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|confirmed',
+        ]);
+
+        if ($validate) {
+            $authService->signUp($validate) ?
+                redirect()->to('/dashboard') :
+                redirect()->to('/signup');
+        }
     }
     public function render()
     {
