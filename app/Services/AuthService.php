@@ -18,8 +18,8 @@ class AuthService
         ]);
     }
 
-    public function login(array $data)
+    public function login(array $data, $remember)
     {
-        return Auth::attempt($data);
+        return Auth::attempt($data, $remember);
     }
 }

@@ -4,11 +4,13 @@ namespace App\Livewire;
 
 use App\Services\AuthService;
 use Livewire\Component;
+use Mockery\Undefined;
 
 class Login extends Component
 {
     public $email;
     public $password;
+    public $remember;
 
     public function save(AuthService $authService)
     {
@@ -17,7 +19,7 @@ class Login extends Component
             'password' => 'required|string'
         ]);
         if ($validate) {
-            if ($authService->login($validate)) redirect()->to('/dashboard');
+            if ($authService->login($validate, $this->remember)) redirect()->to('/dashboard');
         }
     }
     public function render()
