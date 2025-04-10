@@ -7,7 +7,7 @@
         @fluxAppearance
         <title>{{ $title ?? 'Page Title' }}</title>
     </head>
-    <body>
+    <body >
         {{ $slot }}
         @fluxScripts
     </body>

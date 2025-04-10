@@ -3,8 +3,6 @@
 namespace App\Livewire;
 
 use App\Services\AuthService;
-use Barryvdh\Debugbar\Facades\Debugbar;
-use Barryvdh\Debugbar\Twig\Extension\Debug;
 use Livewire\Component;
 
 class Login extends Component
@@ -19,9 +17,7 @@ class Login extends Component
             'password' => 'required|string'
         ]);
         if ($validate) {
-            $authService->login($validate) ?
-                redirect()->to('/dashboard') :
-                redirect()->to('/login');
+            if ($authService->login($validate)) redirect()->to('/dashboard');
         }
     }
     public function render()

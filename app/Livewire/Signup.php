@@ -23,9 +23,7 @@ class Signup extends Component
         ]);
 
         if ($validate) {
-            $authService->signUp($validate) ?
-                redirect()->to('/dashboard') :
-                redirect()->to('/signup');
+            if ($authService->signUp($validate)) redirect()->to('/dashboard');
         }
     }
     public function render()

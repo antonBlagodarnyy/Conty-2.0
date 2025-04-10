@@ -1,16 +1,18 @@
-<div class="auth-container">
+<div class="container">
     <form wire:submit="save">
         <flux:field>
             <flux:label for="email">Email</flux:label>
             <flux:input name="email" id="email" type="text" wire:model="email" />
             <flux:error name="email">@error('email') {{ 'Ese correo no es valido' }} @enderror</flux:error>
+        </flux:field>
 
-
+        <flux:field>
             <flux:label for="password">Contraseña</flux:label>
             <flux:input name="password" id="password" type="text" wire:model="password" />
-            <flux:error>@error('password') {{ 'Esa contraseña no es valida' }} @enderror</flux:error>
-
-            <flux:button type="submit">Enviar</flux:button>
+            <flux:error name="password">@error('password') {{ 'Esa contraseña no es valida' }} @enderror</flux:error>
         </flux:field>
+
+        <flux:button class="mt-2" type="submit">Iniciar sesion</flux:button>
+   
     </form>
 </div>
