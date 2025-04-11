@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Services\AuthService;
 use Livewire\Component;
-use Mockery\Undefined;
 
 class Login extends Component
 {
