@@ -8,7 +8,7 @@
 
         <flux:field>
             <flux:label for="password">Contraseña</flux:label>
-            <flux:input name="password" id="password" type="text" wire:model="password" />
+            <flux:input name="password" id="password" type="password" wire:model="password" />
             <flux:error name="password">@error('password') {{ 'Esa contraseña no es valida' }} @enderror</flux:error>
         </flux:field>
 

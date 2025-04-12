@@ -16,13 +16,13 @@
 
         <flux:field>
             <flux:label for="password">Contraseña</flux:label>
-            <flux:input name="password" id="password" type="text" wire:model="password" />
+            <flux:input name="password" id="password" type="password" wire:model="password" />
             <flux:error>@error('password') {{ 'Esa contraseña no es valida' }} @enderror</flux:error>
         </flux:field>
 
         <flux:field>
             <flux:label for="password_confirmation">Confirmar contraseña</flux:label>
-            <flux:input name="password_confirmation" id="password_confirmation" type="text" wire:model="password_confirmation" />
+            <flux:input name="password_confirmation" id="password_confirmation" type="password" wire:model="password_confirmation" />
             <flux:error>@error('password_confirmation') {{ 'Las contraseñas deben de coincidir' }} @enderror</flux:error>
         </flux:field>
 

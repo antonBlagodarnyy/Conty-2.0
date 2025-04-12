@@ -11,7 +11,7 @@
                 <flux:modal name="login" class="md:w-96">
                     <div class="space-y-6">
                         <div>
-                            <livewire:login></livewire:login>
+                            <livewire:auth.login></livewire:auth.login>
                         </div>
                     </div>
                 </flux:modal>
@@ -24,7 +24,7 @@
                 <flux:modal name="signup" class="md:w-96">
                     <div class="space-y-6">
                         <div>
-                            <livewire:signup></livewire:signup>
+                            <livewire:auth.signup></livewire:auth.signup>
                         </div>
                     </div>
                 </flux:modal>
