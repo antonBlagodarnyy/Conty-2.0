@@ -1,5 +1,4 @@
 <div class="container">
 <livewire:navbar></livewire:navbar>
-
-<div></div>
+<livewire:client-table></livewire:client-table>
 </div>
