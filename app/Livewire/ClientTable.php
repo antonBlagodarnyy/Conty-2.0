@@ -28,8 +28,12 @@ class ClientTable extends LivewireTable
             Action::make(
                 __('Eliminar cliente'),
                 <<<JS
-        confirm('Seguro que desea eliminar a los clientes seleccionados?',\$wire.\$parent.deleteClient(\$wire.selected));
+       if( confirm('Seguro que desea eliminar a los clientes seleccionados?')){
+         for (const e of \$wire.selected) {
+                \$wire.\$parent.deleteClient(\$wire.selected);
+            }
         window.location.reload();
+       }
     JS
             ),
         ];
