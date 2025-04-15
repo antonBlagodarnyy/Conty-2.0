@@ -50,4 +50,7 @@ class User extends Authenticatable
     public function clients(): HasMany{
         return $this->hasMany(Client::class);
     }
+    public function products(): HasMany{
+        return $this->hasMany(Product::class);
+    }
 }

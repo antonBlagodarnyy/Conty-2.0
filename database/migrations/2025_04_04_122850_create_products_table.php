@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name')->nullable(false);
             $table->decimal('price', 8, 2)->nullable(false);
             $table->integer('stockInGrams')->nullable(false);
+            $table->date('updated_at');
+            $table->date('created_at');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
            
         });
