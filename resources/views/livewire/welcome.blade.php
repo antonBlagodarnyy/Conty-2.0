@@ -1,4 +1,3 @@
-<div class="container">
 
     <div class="flex flex-col items-center justify-center mt-20">
         <flux:heading class="p-2" size="xl">Conty 2.0</flux:heading>
@@ -10,9 +9,9 @@
                 </flux:modal.trigger>
                 <flux:modal name="login" class="md:w-96">
                     <div class="space-y-6">
-                        <div>
+                
                             <livewire:auth.login></livewire:auth.login>
-                        </div>
+                     
                     </div>
                 </flux:modal>
             </div>
@@ -23,13 +22,12 @@
                 </flux:modal.trigger>
                 <flux:modal name="signup" class="md:w-96">
                     <div class="space-y-6">
-                        <div>
+                     
                             <livewire:auth.signup></livewire:auth.signup>
-                        </div>
+                       
                     </div>
                 </flux:modal>
             </div>
         </div>
     </div>
 
-</div>

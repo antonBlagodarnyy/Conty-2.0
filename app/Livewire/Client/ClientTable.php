@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\client;
 
 use App\Models\Client;
 use RamonRietdijk\LivewireTables\Livewire\LivewireTable;
@@ -36,6 +36,14 @@ class ClientTable extends LivewireTable
        }
     JS
             ),
+            Action::make(
+                __('Añadir cliente'),
+                <<<JS
+                \$flux.modal('add-client').show(); 
+            JS
+            )
+                ->standalone(),
+
         ];
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 use App\Livewire\Dashboard;
-use App\Livewire\Clients;
+use App\Livewire\Client\Clients;
 use App\Livewire\Welcome;
 
 use Illuminate\Support\Facades\Route;
