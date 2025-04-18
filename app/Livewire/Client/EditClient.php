@@ -2,10 +2,11 @@
 
 namespace App\Livewire\Client;
 
-use Livewire\Attributes\Reactive;
+
 use Livewire\Component;
 
 use App\Models\Client;
+use Livewire\Attributes\Reactive;
 
 class EditClient extends Component
 {
@@ -31,7 +32,7 @@ class EditClient extends Component
         if($this->newPhone){
             $client->phone = $this->newPhone;
         }
-        error_log(json_encode($this->name));
+
 
         if($client->save()){
             $this->js('window.location.reload()'); 
