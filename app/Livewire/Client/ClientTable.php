@@ -31,7 +31,7 @@ class ClientTable extends LivewireTable
                 <<<JS
        if( confirm('Seguro que desea eliminar a los clientes seleccionados?')){
          for (const e of \$wire.selected) {
-                \$wire.\$parent.deleteClient(\$wire.selected);
+                \$wire.\$parent.deleteClient(e);
             }
         window.location.reload();
        }
