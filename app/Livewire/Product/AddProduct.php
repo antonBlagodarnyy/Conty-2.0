@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AddProduct extends Component
 {
-    public $name, $price, $stockinGrams;
+    public $name, $price, $stockInGrams;
 
     public function save()
     {
         if (Product::create([
             'name' => $this->name,
             'price' => $this->price,
-            'stockInGrams' => $this->stockinGrams,
+            'stockInGrams' => $this->stockInGrams,
             'user_id' => Auth::id(),
         ])) {
             session()->flash('message', 'Producto creado');

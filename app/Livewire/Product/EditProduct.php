@@ -20,7 +20,7 @@ class EditProduct extends Component
         if ($product) {
             $this->name = $product->name;
             $this->price = $product->price;
-            $this->stockInGrams = $product->stockinGrams;
+            $this->stockInGrams = $product->stockInGrams;
         }
     }
 
