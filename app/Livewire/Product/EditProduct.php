@@ -27,16 +27,17 @@ class EditProduct extends Component
     public function save()
     {
         $product = Product::find($this->editedProductId);
-        if ($this->newName) {
+        if ($this->newName !== null) {
             $product->name = $this->newName;
         }
-        if ($this->newPrice) {
+        if ($this->newPrice !== null) {
             $product->price = $this->newPrice;
         }
-        if ($this->newStockInGrams) {
+        //TODO improve the feedback on negatives
+        if ($this->newStockInGrams !== null && intval($this->newStockInGrams) >= 0) {
             $product->stockInGrams = $this->newStockInGrams;
         }
-  
+
 
         if ($product->save()) {
             $this->js('window.location.reload()');
