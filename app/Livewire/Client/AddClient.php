@@ -7,7 +7,6 @@ use Livewire\Component;
 use App\Models\Client;
 use Illuminate\Support\Facades\Auth;
 
-use function Laravel\Prompts\alert;
 
 class AddClient extends Component
 {

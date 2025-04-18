@@ -19,6 +19,7 @@ class ClientTable extends LivewireTable
                 ->searchable()
                 ->sortable(),
             Column::make(__('Telefono'), 'phone'),
+
         ];
     }
 
@@ -44,6 +45,18 @@ class ClientTable extends LivewireTable
             )
                 ->standalone(),
 
+            Action::make(
+                __('Editar cliente'),
+                <<<JS
+                    if(\$wire.selected.length>1){
+                        alert('Escoja un solo cliente para editar.')
+                    } else {
+                        \$wire.\$parent.\$set('editedClientId',\$wire.selected[0]);
+                        \$flux.modal('edit-client').show();
+                        
+                    }
+                    JS
+            )
         ];
     }
 }
