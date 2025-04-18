@@ -9,7 +9,7 @@ use App\Models\Client;
 
 class Clients extends Component
 {
-    public $editedClientId = "null";
+    public $editedClientId;
 
     public function deleteClient($id){
         Client::where('id',$id)->delete();
