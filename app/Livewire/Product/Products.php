@@ -5,6 +5,7 @@ namespace App\Livewire\Product;
 use Livewire\Component;
 use App\Models\Product;
 
+//TODO add validation on the forms
 class Products extends Component
 {
     public $editedProductId;
