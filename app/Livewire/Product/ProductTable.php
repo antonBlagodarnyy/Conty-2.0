@@ -21,15 +21,52 @@ class ProductTable extends LivewireTable
                 ->sortable(),
 
             Column::make(__('Precio'), 'price')
-            ->sortable(),
+                ->sortable(),
 
             Column::make(__('Stock en gramos'), 'stockInGrams')
-            ->sortable(),
-            BooleanColumn::make(__('Disponible'), function (mixed $value, Model $model):bool {
-                return $model->stockInGrams;
+                ->sortable(),
+            BooleanColumn::make(__('Disponible'), function (mixed $value, Model $model): bool {
+                return $model->stockInGrams > 0;
             })
-            ->sortable()
-            
+                ->sortable()
+
+        ];
+    }
+
+    protected function actions(): array
+    {
+        return [
+            Action::make(
+                __('Eliminar producto'),
+                <<<JS
+       if( confirm('Seguro que desea eliminar los productos seleccionados?')){
+         for (const e of \$wire.selected) {
+                \$wire.\$parent.deleteProduct(e);
+            }
+        window.location.reload();
+       }
+    JS
+            ),
+            Action::make(
+                __('Añadir producto'),
+                <<<JS
+                \$flux.modal('add-product').show(); 
+            JS
+            )
+                ->standalone(),
+
+            Action::make(
+                __('Editar producto'),
+                <<<JS
+                    if(\$wire.selected.length>1){
+                        alert('Escoja un solo producto para editar.')
+                    } else {
+                        \$wire.\$parent.\$set('editedProductId',\$wire.selected[0]);
+                        \$flux.modal('edit-product').show();
+                        
+                    }
+                    JS
+            )
         ];
     }
 }
