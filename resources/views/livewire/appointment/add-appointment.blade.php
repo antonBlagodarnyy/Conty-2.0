@@ -14,6 +14,10 @@
         </flux:field>
 
         <!--TODO add select 1 client -->
+        <flux:field>
+            <flux:label>Cliente</flux:label>
+            <livewire:appointment.select-client-table wire:model="clientSelection"></livewire:appointment.select-client-table>
+        </flux:field>
 
         <!--TODO add select 0-n products with quantity-->
 
