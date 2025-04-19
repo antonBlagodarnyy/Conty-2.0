@@ -3,12 +3,28 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
 class Appointment extends Model
 {
+
+    protected $fillable = [
+        'date',
+        'user_id',
+        'client_id',
+        'user_id'
+    ];
     //
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function clients(): BelongsTo
+    {
+        return $this->belongsTo(Client::class);
+    }
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class);

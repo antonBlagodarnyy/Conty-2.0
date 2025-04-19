@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->dateTime('date')->nullable(false);
             $table->string('job')->nullable(false);
-            $table->decimal('costs', 8, 2)->nullable(false);
-            $table->decimal('price', 8, 2)->nullable(false);
+/*             $table->decimal('costs', 8, 2)->nullable(false);
+            $table->decimal('price', 8, 2)->nullable(false); */
+            $table->date('updated_at');
+            $table->date('created_at');
             $table->foreignId('client_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
