@@ -6,15 +6,13 @@ use App\Models\Product;
 use Livewire\Attributes\Modelable;
 use RamonRietdijk\LivewireTables\Livewire\LivewireTable;
 use RamonRietdijk\LivewireTables\Columns\Column;
-use RamonRietdijk\LivewireTables\Columns\ViewColumn;
-use Illuminate\Database\Eloquent\Model;
 
 class SelectProductsTable extends  LivewireTable
 {
     protected string $model = Product::class;
 
     #[Modelable]
-    public $selection=[];
+    public $selection = [];
 
 
 
@@ -25,14 +23,20 @@ class SelectProductsTable extends  LivewireTable
                 ->searchable()
                 ->sortable(),
             Column::make(__('Stock'), 'stockInGrams'),
-            ViewColumn::make(__('Cantidad'), 'livewire.appointment.input-product')
+            Column::make(__('Cantidad'), 'id')
+                ->displayUsing(function (mixed $id) {
+                    $disabled = !in_array("".$id, $this->selected);
+                    return view('livewire.appointment.input-product', [
+                        'productId' => $id,
+                        'disabled' => $disabled
+                    ]);
+                })->asHtml(),
         ];
     }
 
     public function saveQuantity($productId, $quantity)
     {
         $this->selection[$productId] = $quantity;
-   
     }
 
     protected function canSelect(): bool

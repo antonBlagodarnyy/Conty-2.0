@@ -1,5 +1,9 @@
 <div class="container">
     <flux:field>
-        <flux:input wire:keyup="saveQuantity({{ $model->id }}, $event.target.value)" type="number"></flux:input>
+        <flux:input
+            type="number"
+            wire:click.stop
+            wire:keyup="saveQuantity({{ $productId }}, $event.target.value)"
+            :disabled="$disabled"></flux:input>
     </flux:field>
 </div>
