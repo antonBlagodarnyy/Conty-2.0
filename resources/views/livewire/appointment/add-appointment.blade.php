@@ -21,7 +21,7 @@
         <!--TODO add select 0-n products with quantity-->
         <flux:field>
             <flux:label>Productos</flux:label>
-            <livewire:appointment.select-products-table wire:model="productsSelection"></livewire:appointment.select-products-table>
+            <livewire:appointment.select-products-table wire:model="products"></livewire:appointment.select-products-table>
         </flux:field>
 
         <flux:button class="mt-2" type="submit">Añadir cita</flux:button>

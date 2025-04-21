@@ -12,7 +12,7 @@ class SelectProductsTable extends  LivewireTable
     protected string $model = Product::class;
 
     #[Modelable]
-    public $selection = [];
+    public $products = ['quantity' => [], 'selected' => []];
 
 
 
@@ -25,7 +25,7 @@ class SelectProductsTable extends  LivewireTable
             Column::make(__('Stock'), 'stockInGrams'),
             Column::make(__('Cantidad'), 'id')
                 ->displayUsing(function (mixed $id) {
-                    $disabled = !in_array("".$id, $this->selected);
+                    $disabled = !in_array("" . $id, $this->selected);
                     return view('livewire.appointment.input-product', [
                         'productId' => $id,
                         'disabled' => $disabled
@@ -36,11 +36,13 @@ class SelectProductsTable extends  LivewireTable
 
     public function saveQuantity($productId, $quantity)
     {
-        $this->selection[$productId] = $quantity;
+        $this->products['quantity'][$productId] = $quantity;
+        
     }
 
     protected function canSelect(): bool
     {
+        $this->products['selected'] = $this->selected;
         return true;
     }
 }
