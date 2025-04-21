@@ -3,6 +3,7 @@
 namespace App\Livewire\Appointment;
 
 use App\Models\Appointment;
+use App\Rules\productInStock;
 use App\Rules\selectedHaveQuantityRule;
 use Livewire\Component;
 
@@ -14,14 +15,15 @@ class AddAppointment extends Component
     public function save()
     {
         $this->validate();
+        error_log("fun");
     }
     protected function rules()
     {
         return [
             'date' => 'required',
             'job' => 'required',
-            'clientSelection' => 'array|size:1',
-            'products' => new selectedHaveQuantityRule(),
+            'clientSelection' => 'required',
+            'products' => [new selectedHaveQuantityRule(), new productInStock()]
         ];
     }
 

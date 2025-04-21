@@ -4,24 +4,28 @@
 
             <flux:label>Fecha</flux:label>
             <flux:input name="date" id="date" type="date" wire:model="date"></flux:input>
-            <flux:error name="date">@error('name') {{ 'Debe introducir una fecha' }} @enderror</flux:error>
+            <flux:error name="date">@error('date') {{ 'Debe introducir una fecha' }} @enderror</flux:error>
         </flux:field>
 
         <flux:field>
             <flux:label>Tipo de trabajo</flux:label>
             <flux:input name="job" id="job" type="text" wire:model="job"></flux:input>
-            <flux:error name="job">@error('phone') {{ 'Debe introducir un tipo de trabajo' }} @enderror</flux:error>
+            <flux:error name="job">@error('job') {{ 'Debe introducir un tipo de trabajo' }} @enderror</flux:error>
         </flux:field>
 
         <flux:field>
             <flux:label>Cliente</flux:label>
             <livewire:appointment.select-client-table wire:model="clientSelection"></livewire:appointment.select-client-table>
+            <flux:error name="clientSelection">@error('clientSelection') {{ 'Debe seleccionar un cliente' }} @enderror</flux:error>
+       
         </flux:field>
 
         <!--TODO add select 0-n products with quantity-->
         <flux:field>
             <flux:label>Productos</flux:label>
             <livewire:appointment.select-products-table wire:model="products"></livewire:appointment.select-products-table>
+            <flux:error name="products">@error('products') {{ 'Debe seleccionar productos con stock disponible' }} @enderror</flux:error>
+       
         </flux:field>
 
         <flux:button class="mt-2" type="submit">Añadir cita</flux:button>
