@@ -1,4 +1,4 @@
-<div class="container">
+<div class="flex flex-col items-center justify-center ">
     <form wire:submit="save">
         <flux:field>
 

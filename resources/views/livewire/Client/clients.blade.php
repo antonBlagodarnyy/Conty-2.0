@@ -1,6 +1,7 @@
-<div class="container">
-<livewire:navbar></livewire:navbar>
-
+<div class="flex flex-col items-center justify-center ">
+    <div class="container">
+    <livewire:navbar></livewire:navbar>
+</div>
 <flux:modal name="add-client">
     <livewire:client.add-client></livewire:client.add-client>
 </flux:modal>
@@ -9,5 +10,7 @@
     <livewire:client.edit-client :$editedClientId></livewire:client.edit-client>
 </flux:modal>
 
-<livewire:client.client-table></livewire:client.client-table>
+<div class="container">
+    <livewire:client.client-table></livewire:client.client-table>
+</div>
 </div>
