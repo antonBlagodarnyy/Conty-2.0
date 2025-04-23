@@ -36,10 +36,12 @@ class AddAppointment extends Component
                 'quantity' => $this->products['quantity'][$selectedId],
                 'user_id' => Auth::id(),
             ]);
-            error_log("fun");
+
         }
 
         $appointment->refresh();
+
+        session()->flash('message', 'Cita creada');
     }
     protected function rules()
     {
