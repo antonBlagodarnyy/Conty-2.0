@@ -22,7 +22,8 @@ class ProductTable extends LivewireTable
 
             Column::make(__('Precio'), 'price')
                 ->sortable(),
-
+            Column::make(__('Contenido neto'), 'net_content')
+                ->sortable(),
             Column::make(__('Stock en gramos'), 'stockInGrams')
                 ->sortable(),
             BooleanColumn::make(__('Disponible'), function (mixed $value, Model $model): bool {

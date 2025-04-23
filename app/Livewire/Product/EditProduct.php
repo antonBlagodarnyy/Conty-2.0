@@ -11,8 +11,8 @@ class EditProduct extends Component
 {
     #[Reactive]
     public $editedProductId;
-    public $newName, $newPrice, $newStockInGrams;
-    protected $name, $price, $stockInGrams;
+    public $newName, $newPrice, $newStockInGrams, $newNetContent;
+    protected $name, $price, $stockInGrams, $netContent;
 
     public function boot()
     {
@@ -21,6 +21,7 @@ class EditProduct extends Component
             $this->name = $product->name;
             $this->price = $product->price;
             $this->stockInGrams = $product->stockInGrams;
+            $this->netContent = $product->netContent;
         }
     }
 
@@ -32,6 +33,9 @@ class EditProduct extends Component
         }
         if ($this->newPrice !== null) {
             $product->price = $this->newPrice;
+        }
+        if ($this->newNetContent !== null && intval($this->newNetContent) >= 0) {
+            $product->netContent = $this->newNetContent;
         }
         //TODO improve the feedback on negatives
         if ($this->newStockInGrams !== null && intval($this->newStockInGrams) >= 0) {

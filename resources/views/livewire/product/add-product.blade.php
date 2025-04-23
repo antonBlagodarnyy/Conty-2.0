@@ -14,6 +14,12 @@
         </flux:field>
 
         <flux:field>
+            <flux:label>Contenido neto</flux:label>
+            <flux:input name="netContent" id="netContent" type="number" wire:model="netContent"></flux:input>
+            <flux:error name="netContent">@error('netContent') {{ 'Debe introducir un contenido neto valido' }} @enderror</flux:error>
+        </flux:field>
+
+        <flux:field>
             <flux:label>Stock en gramos</flux:label>
             <flux:input name="stockInGrams" id="stockInGrams" type="number" wire:model="stockInGrams"></flux:input>
             <flux:error name="stockInGrams">@error('stockInGrams') {{ 'Debe introducir un stock valido' }} @enderror</flux:error>

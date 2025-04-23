@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable(false);
             $table->decimal('price', 8, 2)->nullable(false);
+            $table->integer('net_content')->nullable(false);
             $table->integer('stockInGrams')->nullable(false);
             $table->date('updated_at');
             $table->date('created_at');
