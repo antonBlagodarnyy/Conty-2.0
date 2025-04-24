@@ -20,8 +20,10 @@ class AppointmentTable extends LivewireTable
             ->searchable()
             ->sortable(),
          Column::make(__('Trabajo'), 'job'),
-         Column::make(__('Cliente'), 'client.name'),
-         
+         Column::make(__('Cliente'), 'client.name')
+            ->searchable()
+            ->sortable(),
+
          Column::make(__('Productos'), 'products')
             ->displayUsing(function (mixed $products) {
                return view('livewire.appointment.table-product', ['products' => $products]);
@@ -36,6 +38,20 @@ class AppointmentTable extends LivewireTable
                }
                return number_format($totalCosts, 2) . "€";
             }),
+
+         Column::make(__('Cobro'), 'charge')
+            ->displayUsing(function (mixed $value, Model $model): string {
+               return $value . "€";
+            }),
+         Column::make(__('Beneficios'), function (mixed $value, Model $model): string {
+            $totalCosts = 0;
+            foreach ($model->products as $product) {
+               $cost = ($product->price / $product->net_content) * $product->pivot->quantity;
+               $totalCosts += $cost;
+            }
+            $benefits =  $model->charge - $totalCosts;
+            return number_format($benefits, 2) . "€";
+         })
       ];
    }
 

@@ -13,7 +13,7 @@ use Livewire\Component;
 
 class AddAppointment extends Component
 {
-    public $clientSelection, $products, $date, $job;
+    public $clientSelection, $products, $date, $job, $charge;
 
     public function save()
     {
@@ -22,6 +22,7 @@ class AddAppointment extends Component
         $appointment = new Appointment;
         $appointment->date = $this->date;
         $appointment->job = $this->job;
+        $appointment->charge = $this->charge;
 
         $client = Client::find($this->clientSelection);
         $appointment->client_id = $client->id;

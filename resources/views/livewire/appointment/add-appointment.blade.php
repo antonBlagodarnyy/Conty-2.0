@@ -14,6 +14,12 @@
         </flux:field>
 
         <flux:field>
+            <flux:label>Cobro</flux:label>
+            <flux:input name="charge" id="charge" type="number" step="0.01" wire:model="charge"></flux:input>
+            <flux:error name="charge">@error('charge') {{ 'Debe introducir un cobro valido' }} @enderror</flux:error>
+        </flux:field>
+
+        <flux:field>
             <flux:label>Cliente</flux:label>
             <livewire:appointment.select-client-table wire:model="clientSelection"></livewire:appointment.select-client-table>
             <flux:error name="clientSelection">@error('clientSelection') {{ 'Debe seleccionar un cliente' }} @enderror</flux:error>
