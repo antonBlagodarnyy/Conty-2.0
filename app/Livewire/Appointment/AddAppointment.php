@@ -3,6 +3,7 @@
 namespace App\Livewire\Appointment;
 
 use App\Models\Appointment;
+use App\Models\Service;
 use App\Models\Client;
 use App\Models\Product;
 use App\Rules\productInStock;
@@ -13,16 +14,18 @@ use Livewire\Component;
 
 class AddAppointment extends Component
 {
-    public $clientSelection, $products, $date, $job, $charge;
+    public $clientSelection, $serviceSelection, $products, $date;
 
     public function save()
     {
+       
         $this->validate();
 
         $appointment = new Appointment;
         $appointment->date = $this->date;
-        $appointment->job = $this->job;
-        $appointment->charge = $this->charge;
+
+        $service  = Service::find($this->serviceSelection);
+        $appointment->service_id = $service->id;
 
         $client = Client::find($this->clientSelection);
         $appointment->client_id = $client->id;
@@ -53,7 +56,7 @@ class AddAppointment extends Component
     {
         return [
             'date' => 'required',
-            'job' => 'required',
+            'serviceSelection' => 'required',
             'clientSelection' => 'required',
             'products' => [new selectedHaveQuantityRule(), new productInStock()]
         ];
