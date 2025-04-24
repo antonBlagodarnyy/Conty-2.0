@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('updated_at');
             $table->date('created_at');
             $table->foreignId('client_id')->constrained()->onDelete('cascade');
-            $table->foreignId('job_id')->constrained()->onDelete('cascade');
+            $table->foreignId('service_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
