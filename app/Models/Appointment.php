@@ -14,9 +14,9 @@ class Appointment extends Model
         'date',
         'user_id',
         'client_id',
-        'user_id'
+        'job_id'
     ];
-    //
+   
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -24,6 +24,10 @@ class Appointment extends Model
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);
+    }
+    public function job(): BelongsTo
+    {
+        return $this->belongsTo(Job::class);
     }
     public function products(): BelongsToMany
     {

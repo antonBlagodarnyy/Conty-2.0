@@ -53,4 +53,10 @@ class User extends Authenticatable
     public function products(): HasMany{
         return $this->hasMany(Product::class);
     }
+    public function services(): HasMany{
+        return $this->hasMany(Service::class);
+    }
+    public function appointments(): HasMany{
+        return $this->hasMany(Appointment::class);
+    }
 }

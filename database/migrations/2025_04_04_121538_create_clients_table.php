@@ -10,16 +10,15 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    { {
-            Schema::create('clients', function (Blueprint $table) {
-                $table->id();
-                $table->string('name')->nullable(false);
-                $table->string('phone');
-                $table->date('updated_at');
-                $table->date('created_at');
-                $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            });
-        }
+    {
+        Schema::create('clients', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->nullable(false);
+            $table->string('phone');
+            $table->date('updated_at');
+            $table->date('created_at');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        });
     }
 
     /**
