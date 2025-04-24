@@ -43,6 +43,7 @@ class AppointmentTable extends LivewireTable
             ->displayUsing(function (mixed $value, Model $model): string {
                return $value . "€";
             }),
+            
          Column::make(__('Beneficios'), function (mixed $value, Model $model): string {
             $totalCosts = 0;
             foreach ($model->products as $product) {

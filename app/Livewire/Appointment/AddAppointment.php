@@ -31,18 +31,23 @@ class AddAppointment extends Component
 
         $appointment->save();
 
-
         foreach ($this->products['selected'] as $selectedId) {
+
+            //Create the pivot table
             $appointment->products()->attach($selectedId, [
                 'quantity' => $this->products['quantity'][$selectedId],
                 'user_id' => Auth::id(),
             ]);
 
+            //Remove grams from  stock
+            $product = Product::find($selectedId);
+            $product->stockInGrams -= $this->products['quantity'][$selectedId];
+            $product->save();
         }
 
         $appointment->refresh();
 
-        session()->flash('message', 'Cita creada');
+        $this->js('window.location.reload()');
     }
     protected function rules()
     {
@@ -53,6 +58,7 @@ class AddAppointment extends Component
             'products' => [new selectedHaveQuantityRule(), new productInStock()]
         ];
     }
+
 
     public function render()
     {

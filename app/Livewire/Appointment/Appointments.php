@@ -7,8 +7,14 @@ use Livewire\Component;
 
 class Appointments extends Component
 {
-    public function deleteAppointment($id){
-        Appointment::where('id',$id)->delete();
+    public function deleteAppointment($id)
+    {
+        $appoitnment = Appointment::find($id);
+        foreach ($appoitnment->products as $product) {
+            $product->stockInGrams += $product->pivot->quantity;
+            $product->save();
+        }
+        Appointment::where('id', $id)->delete();
     }
 
     public function render()
