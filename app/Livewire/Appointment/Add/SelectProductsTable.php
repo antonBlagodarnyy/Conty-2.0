@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Appointment;
+namespace App\Livewire\Appointment\Add;
 
 use App\Models\Product;
 use Livewire\Attributes\Modelable;
@@ -14,8 +14,6 @@ class SelectProductsTable extends  LivewireTable
     #[Modelable]
     public $products = ['quantity' => [], 'selected' => []];
 
-
-
     protected function columns(): array
     {
         return [
@@ -26,7 +24,7 @@ class SelectProductsTable extends  LivewireTable
             Column::make(__('Cantidad'), 'id')
                 ->displayUsing(function (mixed $id) {
                     $disabled = !in_array("" . $id, $this->selected);
-                    return view('livewire.appointment.input-product', [
+                    return view('livewire.appointment.add.input-product', [
                         'productId' => $id,
                         'disabled' => $disabled
                     ]);

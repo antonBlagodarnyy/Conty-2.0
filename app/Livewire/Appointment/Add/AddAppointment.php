@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Appointment;
+namespace App\Livewire\Appointment\Add;
 
 use App\Models\Appointment;
 use App\Models\Service;
@@ -65,6 +65,6 @@ class AddAppointment extends Component
 
     public function render()
     {
-        return view('livewire.appointment.add-appointment');
+        return view('livewire.appointment.add.add-appointment');
     }
 }

@@ -4,7 +4,7 @@
   </div>
 
   <flux:modal name="add-appointment" variant="flyout" position="left">
-    <livewire:appointment.add-appointment></livewire:appointment.add-appointment>
+    <livewire:appointment.add.add-appointment></livewire:appointment.add.add-appointment>
   </flux:modal>
 
   <div class="container">
