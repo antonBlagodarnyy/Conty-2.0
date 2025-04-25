@@ -2,14 +2,14 @@
 
 namespace App\Livewire\Appointment\Add;
 
-use App\Models\Service;
+use App\Models\Client;
 use Livewire\Attributes\Modelable;
 use RamonRietdijk\LivewireTables\Livewire\LivewireTable;
 use RamonRietdijk\LivewireTables\Columns\Column;
 
-class SelectServiceTable extends  LivewireTable
+class AddSelectClientTable extends  LivewireTable
 {
-    protected string $model = Service::class;
+    protected string $model = Client::class;
 
     #[Modelable]
     public $selection;
@@ -19,9 +19,6 @@ class SelectServiceTable extends  LivewireTable
     {
         return [
             Column::make(__('Nombre'), 'name')
-                ->searchable()
-                ->sortable(),
-                Column::make(__('Cobro'), 'charge')
                 ->searchable()
                 ->sortable(),
         ];

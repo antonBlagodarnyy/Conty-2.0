@@ -79,6 +79,20 @@ class AppointmentTable extends LivewireTable
            JS
          )
             ->standalone(),
+
+         Action::make(
+            __('Editar cita'),
+            <<<JS
+                   if(\$wire.selected.length>1){
+                       alert('Escoja una sola cita para editar.')
+                   } else {
+                       \$wire.\$parent.\$set('editedAppointmentId',\$wire.selected[0]);
+                       \$flux.modal('edit-appointment').show();
+                       \$wire.dispatch('updateSelection');
+                       
+                   }
+                   JS
+         )
       ];
    }
 }

@@ -7,6 +7,8 @@ use Livewire\Component;
 
 class Appointments extends Component
 {
+    public $editedAppointmentId;
+    
     public function deleteAppointment($id)
     {
         $appoitnment = Appointment::find($id);

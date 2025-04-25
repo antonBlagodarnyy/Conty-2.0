@@ -37,7 +37,7 @@ class EditProduct extends Component
         if ($this->newNetContent !== null && intval($this->newNetContent) >= 0) {
             $product->netContent = $this->newNetContent;
         }
-        //TODO improve the feedback on negatives
+        //TODO improve the feedback on negatives adding validators for example
         if ($this->newStockInGrams !== null && intval($this->newStockInGrams) >= 0) {
             $product->stockInGrams = $this->newStockInGrams;
         }

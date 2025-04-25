@@ -13,6 +13,7 @@
             <flux:error name="price">@error('price') {{ 'Debe introducir un precio valido' }} @enderror</flux:error>
         </flux:field>
 
+        <!--TODO netcontent is not shown on placeholder-->
         <flux:field>
             <flux:label>Contenido neto</flux:label>
             <flux:input name="netContent" id="netContent" type="number"  placeholder="{{ $this->netContent }}" wire:model="newNetContent"></flux:input>

@@ -15,8 +15,8 @@
 
         <flux:field>
             <flux:label>Contenido neto</flux:label>
-            <flux:input name="netContent" id="netContent" type="number" wire:model="netContent"></flux:input>
-            <flux:error name="netContent">@error('netContent') {{ 'Debe introducir un contenido neto valido' }} @enderror</flux:error>
+            <flux:input name="netContent" id="netContent" type="number" wire:model="net_content"></flux:input>
+            <flux:error name="netContent">@error('net_content') {{ 'Debe introducir un contenido neto valido' }} @enderror</flux:error>
         </flux:field>
 
         <flux:field>

@@ -4,6 +4,7 @@
             type="number"
             wire:click.stop
             wire:keyup="saveQuantity({{ $productId }}, $event.target.value)"
-            :disabled="$disabled"></flux:input>
+            :disabled="$disabled"
+            placeholder="{{$introducedQuantity}}"></flux:input>
     </flux:field>
 </div>
