@@ -3,6 +3,10 @@
 namespace App\Livewire\client;
 
 use App\Models\Client;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Livewire\Attributes\Locked;
+use Illuminate\Support\Facades\Auth;
 use RamonRietdijk\LivewireTables\Livewire\LivewireTable;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Actions\Action;
@@ -11,7 +15,20 @@ class ClientTable extends LivewireTable
 {
     protected string $model = Client::class;
 
+    #[Locked]
+    public int $userId;
 
+    public function mount()
+    {
+        $this->userId = Auth::user()->id;
+    }
+    
+    /** @return Builder<covariant Model> */
+    protected function query(): Builder
+    {
+        return $this->model()->query()->where('user_id', '=', $this->userId);
+    }
+    
     protected function columns(): array
     {
         return [

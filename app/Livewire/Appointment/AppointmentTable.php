@@ -4,6 +4,9 @@ namespace App\Livewire\Appointment;
 
 use App\Models\Appointment;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\Locked;
+use Illuminate\Support\Facades\Auth;
 use RamonRietdijk\LivewireTables\Actions\Action;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Columns\DateColumn;
@@ -12,6 +15,20 @@ use RamonRietdijk\LivewireTables\Livewire\LivewireTable;
 class AppointmentTable extends LivewireTable
 {
    protected string $model = Appointment::class;
+
+   #[Locked]
+   public int $userId;
+
+   public function mount()
+   {
+       $this->userId = Auth::user()->id;
+   }
+   
+   /** @return Builder<covariant Model> */
+   protected function query(): Builder
+   {
+       return $this->model()->query()->where('appointments.user_id', '=', $this->userId);
+   }
 
    protected function columns(): array
    {

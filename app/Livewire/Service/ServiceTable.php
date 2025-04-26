@@ -4,6 +4,10 @@ namespace App\Livewire\Service;
 
 
 use App\Models\Service;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Livewire\Attributes\Locked;
+use Illuminate\Support\Facades\Auth;
 use RamonRietdijk\LivewireTables\Livewire\LivewireTable;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Actions\Action;
@@ -11,6 +15,20 @@ use RamonRietdijk\LivewireTables\Actions\Action;
 class ServiceTable extends LivewireTable
 {
    protected string $model = Service::class;
+
+   #[Locked]
+    public int $userId;
+
+    public function mount()
+    {
+        $this->userId = Auth::user()->id;
+    }
+    
+    /** @return Builder<covariant Model> */
+    protected function query(): Builder
+    {
+        return $this->model()->query()->where('user_id', '=', $this->userId);
+    }
 
    protected function columns(): array
     {

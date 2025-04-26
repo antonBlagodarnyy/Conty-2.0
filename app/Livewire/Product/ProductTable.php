@@ -3,15 +3,33 @@
 namespace App\Livewire\Product;
 
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\Locked;
+use Illuminate\Support\Facades\Auth;
 use RamonRietdijk\LivewireTables\Livewire\LivewireTable;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Actions\Action;
 use RamonRietdijk\LivewireTables\Columns\BooleanColumn;
 use Illuminate\Database\Eloquent\Model;
 
+
 class ProductTable extends LivewireTable
 {
     protected string $model = Product::class;
+
+    #[Locked]
+    public int $userId;
+
+    public function mount()
+    {
+        $this->userId = Auth::user()->id;
+    }
+
+    /** @return Builder<covariant Model> */
+    protected function query(): Builder
+    {
+        return $this->model()->query()->where('user_id', '=', $this->userId);
+    }
 
     protected function columns(): array
     {

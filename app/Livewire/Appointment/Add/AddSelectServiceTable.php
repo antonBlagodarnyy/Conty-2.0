@@ -4,6 +4,10 @@ namespace App\Livewire\Appointment\Add;
 
 use App\Models\Service;
 use Livewire\Attributes\Modelable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Livewire\Attributes\Locked;
+use Illuminate\Support\Facades\Auth;
 use RamonRietdijk\LivewireTables\Livewire\LivewireTable;
 use RamonRietdijk\LivewireTables\Columns\Column;
 
@@ -14,6 +18,19 @@ class AddSelectServiceTable extends  LivewireTable
     #[Modelable]
     public $selection;
 
+    #[Locked]
+    public int $userId;
+
+    public function mount()
+    {
+        $this->userId = Auth::user()->id;
+    }
+    
+    /** @return Builder<covariant Model> */
+    protected function query(): Builder
+    {
+        return $this->model()->query()->where('user_id', '=', $this->userId);
+    }
 
     protected function columns(): array
     {
