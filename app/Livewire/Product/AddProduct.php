@@ -3,26 +3,35 @@
 namespace App\Livewire\Product;
 
 use Livewire\Component;
-
+use Livewire\Attributes\Validate;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
 class AddProduct extends Component
 {
-    public $name, $price, $stockInGrams, $net_content;
+    #[Validate('required', onUpdate: false)]
+    public $name;
+    #[Validate('required|decimal:2', onUpdate: false)]
+    public $price;
+    #[Validate('required|min:1', onUpdate: false)]
+    public $stockInGrams;
+    #[Validate('required|min:1', onUpdate: false)]
+    public $net_content;
 
     public function save()
     {
 
-        if (Product::create([
+        $this->validate();
+
+        Product::create([
             'name' => $this->name,
             'price' => $this->price,
             'net_content' => $this->net_content,
             'stockInGrams' => $this->stockInGrams,
             'user_id' => Auth::id(),
-        ])) {
-            session()->flash('message', 'Producto creado');
-        }
+        ]);
+
+        $this->js('window.location.reload()');
     }
 
     public function render()

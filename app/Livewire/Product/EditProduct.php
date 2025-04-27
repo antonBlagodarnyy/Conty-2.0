@@ -3,7 +3,7 @@
 namespace App\Livewire\Product;
 
 use Livewire\Component;
-
+use Livewire\Attributes\Validate;
 use Livewire\Attributes\Reactive;
 use App\Models\Product;
 
@@ -11,7 +11,17 @@ class EditProduct extends Component
 {
     #[Reactive]
     public $editedProductId;
-    public $newName, $newPrice, $newStockInGrams, $newNetContent;
+
+    #[Validate('required', onUpdate: false)]
+    public $newName;
+    #[Validate('required|decimal:2', onUpdate: false)]
+    public $newPrice;
+    #[Validate('required|min:1', onUpdate: false)]
+    public $newStockInGrams;
+    #[Validate('required|min:1', onUpdate: false)]
+    public $newNetContent;
+
+
     protected $name, $price, $stockInGrams, $netContent;
 
     public function boot()
@@ -28,26 +38,15 @@ class EditProduct extends Component
     public function save()
     {
         $product = Product::find($this->editedProductId);
-        if ($this->newName !== null) {
-            $product->name = $this->newName;
-        }
-        if ($this->newPrice !== null) {
-            $product->price = $this->newPrice;
-        }
-        if ($this->newNetContent !== null && intval($this->newNetContent) >= 0) {
-            $product->netContent = $this->newNetContent;
-        }
-        //TODO improve the feedback on negatives adding validators for example
-        if ($this->newStockInGrams !== null && intval($this->newStockInGrams) >= 0) {
-            $product->stockInGrams = $this->newStockInGrams;
-        }
 
+        $product->name = $this->newName;
+        $product->price = $this->newPrice;
+        $product->netContent = $this->newNetContent;
+        $product->stockInGrams = $this->newStockInGrams;
 
-        if ($product->save()) {
-            $this->js('window.location.reload()');
-        } else {
-            session()->flash('message', 'El producto no se ha podido editar.');
-        }
+        $product->save();
+
+        $this->js('window.location.reload()');
     }
 
     public function render()

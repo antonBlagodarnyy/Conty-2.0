@@ -18,7 +18,6 @@ class AddAppointment extends Component
 
     public function save()
     {
-       
         $this->validate();
 
         $appointment = new Appointment;

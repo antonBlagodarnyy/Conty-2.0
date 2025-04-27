@@ -6,6 +6,8 @@ use Livewire\Component;
 use Livewire\Attributes\Reactive;
 use App\Models\Appointment;
 use App\Models\Product;
+use App\Rules\productInStock;
+use App\Rules\selectedHaveQuantityRule;
 use Illuminate\Support\Facades\Auth;
 
 class EditAppointment extends Component
@@ -31,17 +33,14 @@ class EditAppointment extends Component
 
     public function save()
     {
-        //TODO Add valdiators: negatives and no selections
+        $this->validate();
+
         $appointment = Appointment::find($this->editedAppointmentId);
-        if ($this->newDate !== null) {
-            $appointment->date = $this->newDate;
-        }
-        if ($this->newServiceSelection !== null) {
-            $appointment->service_id = $this->newServiceSelection;
-        }
-        if ($this->newClientSelection !== null) {
-            $appointment->client_id = $this->newClientSelection;
-        }
+
+        $appointment->date = $this->newDate;
+        $appointment->service_id = $this->newServiceSelection;
+        $appointment->client_id = $this->newClientSelection;
+
 
         //cast newProductsSelection 
         //Livewire only supports passing to parent from children 1 var per component.
@@ -87,17 +86,21 @@ class EditAppointment extends Component
             }
         }
 
-
         //sync the products
         $appointment->products()->sync($castedNewProducts);
 
-        if ($appointment->save()) {
-            $this->js('window.location.reload()');
-        } else {
-            session()->flash('message', 'La cita no se ha podido editar.');
-        }
+        $appointment->save();
+        $this->js('window.location.reload()');
     }
-
+    protected function rules()
+    {
+        return [
+            'newDate' => 'required',
+            'newServiceSelection' => 'required',
+            'newClientSelection' => 'required',
+            'newProductsSelection' => [new selectedHaveQuantityRule(), new productInStock()]
+        ];
+    }
     public function render()
     {
         return view('livewire.appointment.edit.edit-appointment');

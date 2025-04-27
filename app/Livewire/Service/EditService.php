@@ -3,6 +3,7 @@
 namespace App\Livewire\Service;
 
 use App\Models\Service;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\Attributes\Reactive;
 
@@ -10,9 +11,15 @@ class EditService extends Component
 {
     #[Reactive]
     public $editedServiceId;
-    public $newName, $newCharge;
+
+    #[Validate('required', onUpdate: false)]
+    public $newName;
+
+    #[Validate('required|min:1', onUpdate: false)]
+    public $newCharge;
+
     protected $name, $charge;
-    
+
     public function boot()
     {
         $service = Service::find($this->editedServiceId);
@@ -24,22 +31,17 @@ class EditService extends Component
 
     public function save()
     {
+        $this->validate();
+
         $service = Service::find($this->editedServiceId);
-        if($this->newName){
-            $service->name = $this->newName;
-        }
-        if($this->newCharge){
-            $service->charge = $this->newCharge;
-        }
 
+        $service->name = $this->newName;
+        $service->charge = $this->newCharge;
 
-        if($service->save()){
-            $this->js('window.location.reload()'); 
-        } else{
-            session()->flash('message', 'El servicio no se ha podido editar.');
-        }
-
+        $service->save();
         
+        $this->js('window.location.reload()');
+
     }
 
     public function render()
