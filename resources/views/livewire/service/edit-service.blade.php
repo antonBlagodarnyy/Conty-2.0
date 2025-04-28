@@ -16,11 +16,4 @@
         <flux:button class="mt-2" type="submit">Guardar cambios</flux:button>
     </form>
 
-    <div>
-        @if (session()->has('message'))
-            <div class="mt-2">
-                {{ session('message') }}
-            </div>
-        @endif
-    </div>
 </div>
