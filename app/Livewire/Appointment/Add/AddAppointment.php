@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Models\Client;
 use App\Models\Product;
 use App\Rules\productInStock;
+use App\Rules\quantityNotNegative;
 use App\Rules\selectedHaveQuantityRule;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -57,7 +58,11 @@ class AddAppointment extends Component
             'date' => 'required',
             'serviceSelection' => 'required',
             'clientSelection' => 'required',
-            'products' => [new selectedHaveQuantityRule(), new productInStock()]
+            'products' => [
+                new selectedHaveQuantityRule(),
+                new productInStock(),
+                new quantityNotNegative()
+            ]
         ];
     }
 

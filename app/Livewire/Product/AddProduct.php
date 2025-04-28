@@ -11,11 +11,11 @@ class AddProduct extends Component
 {
     #[Validate('required', onUpdate: false)]
     public $name;
-    #[Validate('required|decimal:2', onUpdate: false)]
+    #[Validate('required|numeric|min:0', onUpdate: false)]
     public $price;
-    #[Validate('required|min:1', onUpdate: false)]
+    #[Validate('required|numeric|min:0', onUpdate: false)]
     public $stockInGrams;
-    #[Validate('required|min:1', onUpdate: false)]
+    #[Validate('required|numeric|min:1', onUpdate: false)]
     public $net_content;
 
     public function save()

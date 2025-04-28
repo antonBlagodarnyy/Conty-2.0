@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\Attributes\Reactive;
 use App\Models\Appointment;
 use App\Models\Product;
+use App\Rules\quantityNotNegative;
 use App\Rules\productInStock;
 use App\Rules\selectedHaveQuantityRule;
 use Illuminate\Support\Facades\Auth;
@@ -98,7 +99,10 @@ class EditAppointment extends Component
             'newDate' => 'required',
             'newServiceSelection' => 'required',
             'newClientSelection' => 'required',
-            'newProductsSelection' => [new selectedHaveQuantityRule(), new productInStock()]
+            'newProductsSelection' => [
+                new selectedHaveQuantityRule(), 
+                new productInStock(),
+                new quantityNotNegative()]
         ];
     }
     public function render()

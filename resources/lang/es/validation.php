@@ -85,7 +85,7 @@ return [
     'mimes'                => 'El campo :attribute debe ser un archivo de tipo: :values.',
     'mimetypes'            => 'El campo :attribute debe ser un archivo de tipo: :values.',
     'min'                  => [
-        'numeric' => 'El campo :attribute debe ser al menos :min.',
+        'numeric' => 'El campo debe ser al menos :min.',
         'file'    => 'El archivo :attribute debe pesar al menos :min kilobytes.',
         'string'  => 'El campo :attribute debe contener al menos :min caracteres.',
         'array'   => 'El campo :attribute debe contener al menos :min elementos.',
@@ -96,7 +96,7 @@ return [
     'password'             => 'La contraseña es incorrecta.',
     'present'              => 'El campo :attribute debe estar presente.',
     'regex'                => 'El formato del campo :attribute es inválido.',
-    'required'             => 'El campo :attribute es obligatorio.',
+    'required'             => 'El campo es obligatorio.',
     'required_if'          => 'El campo :attribute es obligatorio cuando el campo :other es :value.',
     'required_unless'      => 'El campo :attribute es requerido a menos que :other se encuentre en :values.',
     'required_with'        => 'El campo :attribute es obligatorio cuando :values está presente.',

@@ -14,11 +14,11 @@ class EditProduct extends Component
 
     #[Validate('required', onUpdate: false)]
     public $newName;
-    #[Validate('required|decimal:2', onUpdate: false)]
+    #[Validate('required|numeric|min:0', onUpdate: false)]
     public $newPrice;
-    #[Validate('required|min:1', onUpdate: false)]
+    #[Validate('required|numeric|min:0', onUpdate: false)]
     public $newStockInGrams;
-    #[Validate('required|min:1', onUpdate: false)]
+    #[Validate('required|numeric|min:1', onUpdate: false)]
     public $newNetContent;
 
 
@@ -31,17 +31,19 @@ class EditProduct extends Component
             $this->name = $product->name;
             $this->price = $product->price;
             $this->stockInGrams = $product->stockInGrams;
-            $this->netContent = $product->netContent;
+            $this->netContent = $product->net_content;
         }
     }
 
     public function save()
     {
+        $this->validate();
+
         $product = Product::find($this->editedProductId);
 
         $product->name = $this->newName;
         $product->price = $this->newPrice;
-        $product->netContent = $this->newNetContent;
+        $product->net_content = $this->newNetContent;
         $product->stockInGrams = $this->newStockInGrams;
 
         $product->save();

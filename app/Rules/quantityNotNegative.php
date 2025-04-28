@@ -4,9 +4,8 @@ namespace App\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
-use App\Models\Product;
 
-class productInStock implements ValidationRule
+class quantityNotNegative implements ValidationRule
 {
     /**
      * Run the validation rule.
@@ -16,12 +15,8 @@ class productInStock implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         foreach ($value['selected'] as $selected) {
-          
-            if (isset($value['quantity'][intval($selected)])) {
-                $product = Product::find($selected);
-                if ($product->stockInGrams < $value['quantity'][intval($selected)]) {
-                    $fail('No hay suficiente stock.');
-                }
+            if ( $value['quantity'][intval($selected)] < 0) {
+                $fail('Todas las cantidades seleccionadas deben ser un valor positivo o 0.');
             }
         }
     }

@@ -4,13 +4,13 @@
 
             <flux:label>Nombre</flux:label>
             <flux:input name="name" id="name" type="text" wire:model="name"></flux:input>
-            @error('name')<flux:error name="name" message="Debe introducir un nombre."></flux:error>@enderror
+           <flux:error name="name"></flux:error>
         </flux:field>
 
         <flux:field>
             <flux:label>Cobro</flux:label>
             <flux:input name="charge" id="charge" type="number" step="0.01" wire:model="charge"></flux:input>
-            @error('charge')<flux:error name="charge" message="Debe introducir un cobro"> </flux:error> @enderror
+            <flux:error name="charge"></flux:error>
         </flux:field>
 
         <flux:button class="mt-2" type="submit">Añadir Servicio</flux:button>
