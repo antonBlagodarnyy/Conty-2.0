@@ -18,7 +18,7 @@ class Login extends Component
             'password' => 'required|string'
         ]);
         if ($validate) {
-            if ($authService->login($validate, $this->remember)) redirect()->to('/dashboard');
+            if ($authService->login($validate, $this->remember)) redirect()->to('/dashboard/appointments');
         }
     }
     public function render()

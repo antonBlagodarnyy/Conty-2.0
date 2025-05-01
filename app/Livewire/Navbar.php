@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Navbar extends Component
 {
-    //TODO destroy the session too
+
     public function logout(){
         Auth::logout();
         redirect()->to('/');

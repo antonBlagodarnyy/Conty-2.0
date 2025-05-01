@@ -11,7 +11,7 @@ class Welcome extends Component
     public function mount()
     {
         if (Auth::check()) {
-            redirect()->to('/dashboard');
+            redirect()->to('/dashboard/appointments');
         }
     }
     public function render()

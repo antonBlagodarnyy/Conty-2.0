@@ -23,7 +23,7 @@ class Signup extends Component
         ]);
 
         if ($validate) {
-            if ($authService->signUp($validate)) redirect()->to('/dashboard');
+            if ($authService->signUp($validate)) redirect()->to('/dashboard/appointments');
         }
     }
     public function render()
