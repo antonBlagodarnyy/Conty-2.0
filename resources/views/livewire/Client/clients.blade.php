@@ -2,11 +2,11 @@
     <div class="container">
     <livewire:navbar></livewire:navbar>
 </div>
-<flux:modal name="add-client">
+<flux:modal name="add-client" @close="clearAddForm">
     <livewire:client.add-client></livewire:client.add-client>
 </flux:modal>
 
-<flux:modal name="edit-client">
+<flux:modal name="edit-client" @close="clearEditForm">
     <livewire:client.edit-client :$editedClientId></livewire:client.edit-client>
 </flux:modal>
 

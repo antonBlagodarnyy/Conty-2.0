@@ -4,6 +4,7 @@ namespace App\Livewire\Product;
 
 use Livewire\Component;
 use Livewire\Attributes\Validate;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Reactive;
 use App\Models\Product;
 
@@ -23,6 +24,15 @@ class EditProduct extends Component
 
 
     protected $name, $price, $stockInGrams, $netContent;
+
+    #[On('clear-edit-form')]
+    public function clearForm()
+    {
+        $this->newName = "";
+        $this->newPrice = "";
+        $this->newStockInGrams = "";
+        $this->newNetContent = "";
+    }
 
     public function boot()
     {

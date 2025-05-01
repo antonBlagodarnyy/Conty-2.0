@@ -4,6 +4,7 @@ namespace App\Livewire\Service;
 
 use App\Models\Service;
 use Livewire\Attributes\Validate;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\Attributes\Reactive;
 
@@ -14,11 +15,17 @@ class EditService extends Component
 
     #[Validate('required', onUpdate: false)]
     public $newName;
-
     #[Validate('required|min:1', onUpdate: false)]
     public $newCharge;
 
     protected $name, $charge;
+
+    #[On('clear-edit-form')]
+    public function clearForm()
+    {
+        $this->newName = "";
+        $this->newCharge = "";
+    }
 
     public function boot()
     {

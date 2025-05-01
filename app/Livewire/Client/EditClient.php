@@ -7,6 +7,7 @@ use Livewire\Component;
 
 use App\Models\Client;
 use Livewire\Attributes\Validate;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Reactive;
 
 class EditClient extends Component
@@ -20,6 +21,13 @@ class EditClient extends Component
     public $newPhone;
 
     protected $name, $phone;
+
+    #[On('clear-edit-form')]
+    public function clearForm()
+    {
+        $this->newName = "";
+        $this->newPhone = "";
+    }
 
     public function boot()
     {

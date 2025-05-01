@@ -4,6 +4,7 @@ namespace App\Livewire\Service;
 
 use App\Models\Service;
 use Livewire\Attributes\Validate;
+use Livewire\Attributes\On;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -13,6 +14,13 @@ class AddService extends Component
     public $name;
     #[Validate('required|min:1', onUpdate: false)]
     public $charge;
+
+    #[On('clear-add-form')]
+    public function clearForm()
+    {
+        $this->name = "";
+        $this->charge = "";
+    }
 
     public function save()
     {

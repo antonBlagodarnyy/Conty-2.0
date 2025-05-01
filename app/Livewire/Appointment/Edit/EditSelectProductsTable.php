@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Auth;
 use RamonRietdijk\LivewireTables\Livewire\LivewireTable;
 use RamonRietdijk\LivewireTables\Columns\Column;
 
+
 class EditSelectProductsTable extends  LivewireTable
 {
     protected string $model = Product::class;
+
 
     #[Locked]
     public int $userId;
@@ -24,7 +26,7 @@ class EditSelectProductsTable extends  LivewireTable
     {
         $this->userId = Auth::user()->id;
     }
-    
+
     /** @return Builder<covariant Model> */
     protected function query(): Builder
     {
@@ -37,13 +39,16 @@ class EditSelectProductsTable extends  LivewireTable
     #[Reactive]
     public $productsSelection;
 
+
     #[On('updateSelection')]
     public function updateSelection()
     {
+        $this->selected = [];
         foreach ($this->productsSelection as  $product) {
             $this->selected[] = $product->id . "";
             $this->products['quantity'][$product->id] = $product->pivot->quantity;
         }
+
     }
 
     protected function columns(): array
@@ -58,14 +63,15 @@ class EditSelectProductsTable extends  LivewireTable
 
                     $disabled = !in_array("" . $id, $this->selected);
 
-                    $introducedQuantity = "";
                     if (isset($this->products['quantity'][$id]))
                         $introducedQuantity = $this->products['quantity'][$id];
+                    else
+                        $introducedQuantity = "";
 
                     return view('livewire.appointment.add.input-product', [
                         'productId' => $id,
                         'disabled' => $disabled,
-                        'introducedQuantity' => $introducedQuantity,
+                        'introducedQuantity' => $introducedQuantity
                     ]);
                 })->asHtml(),
         ];

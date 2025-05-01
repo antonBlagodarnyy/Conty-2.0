@@ -4,6 +4,7 @@ namespace App\Livewire\client;
 
 use Livewire\Component;
 use Livewire\Attributes\Validate;
+use Livewire\Attributes\On;
 use App\Models\Client;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,6 +15,13 @@ class AddClient extends Component
     public $name;
     #[Validate('required', onUpdate: false)]
     public $phone;
+
+    #[On('clear-add-form')]
+    public function clearForm()
+    {
+        $this->name = "";
+        $this->phone = "";
+    }
 
     public function save()
     {

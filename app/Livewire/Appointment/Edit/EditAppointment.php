@@ -4,12 +4,14 @@ namespace App\Livewire\Appointment\Edit;
 
 use Livewire\Component;
 use Livewire\Attributes\Reactive;
+use Livewire\Attributes\On;
 use App\Models\Appointment;
 use App\Models\Product;
 use App\Rules\quantityNotNegative;
 use App\Rules\productInStock;
 use App\Rules\selectedHaveQuantityRule;
 use Illuminate\Support\Facades\Auth;
+
 
 class EditAppointment extends Component
 {
@@ -19,6 +21,15 @@ class EditAppointment extends Component
     public $newDate, $newServiceSelection, $newClientSelection, $newProductsSelection;
     public $date, $serviceSelection, $clientSelection, $productsSelection;
 
+
+    #[On('clear-edit-form')]
+    public function clearForm()
+    {
+        $this->newDate = "";
+        //Client and service get updated on opening modal
+        $this->newProductsSelection = [];
+
+    }
 
     public function boot()
     {

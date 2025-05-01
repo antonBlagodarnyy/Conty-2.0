@@ -4,6 +4,7 @@ namespace App\Livewire\Product;
 
 use Livewire\Component;
 use Livewire\Attributes\Validate;
+use Livewire\Attributes\On;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +18,15 @@ class AddProduct extends Component
     public $stockInGrams;
     #[Validate('required|numeric|min:1', onUpdate: false)]
     public $net_content;
+
+    #[On('clear-add-form')]
+    public function clearForm()
+    {
+        $this->name = "";
+        $this->price = "";
+        $this->stockInGrams = "";
+        $this->net_content = "";
+    }
 
     public function save()
     {

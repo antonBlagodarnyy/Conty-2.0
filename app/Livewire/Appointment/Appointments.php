@@ -9,6 +9,13 @@ class Appointments extends Component
 {
     public $editedAppointmentId;
     
+    public function clearAddForm(){
+        $this->dispatch('clear-add-form');
+    }
+    public function clearEditForm(){
+        $this->dispatch('clear-edit-form');
+    }
+    
     public function deleteAppointment($id)
     {
         $appoitnment = Appointment::find($id);

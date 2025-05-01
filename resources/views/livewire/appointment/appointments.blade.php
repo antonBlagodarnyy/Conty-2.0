@@ -3,12 +3,12 @@
     <livewire:navbar></livewire:navbar>
   </div>
 
-  <flux:modal name="add-appointment" variant="flyout" position="left">
+  <flux:modal name="add-appointment" variant="flyout" position="left" @close="clearAddForm">
     <livewire:appointment.add.add-appointment></livewire:appointment.add.add-appointment>
   </flux:modal>
 
-  <!--TODO reset values of the modal on close-->
-  <flux:modal name="edit-appointment" variant="flyout" position="left">
+
+  <flux:modal name="edit-appointment" variant="flyout" position="left" @close="clearEditForm">
     <livewire:appointment.edit.edit-appointment :$editedAppointmentId></livewire:appointment.edit.edit-appointment>
   </flux:modal>
 
