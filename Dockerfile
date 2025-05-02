@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y \
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
+
+
 # Set working directory
 WORKDIR /var/www/html
 
@@ -25,11 +27,7 @@ COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 # Install PHP dependencies
 RUN composer install --optimize-autoloader --no-dev
 
-# Install frontend dependencies
-RUN npm install
 
-# Build Vite assets for production
-RUN npm run build
 
 RUN php artisan config:cache && \
     php artisan route:cache && \
