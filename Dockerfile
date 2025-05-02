@@ -26,7 +26,7 @@ COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 RUN composer install --optimize-autoloader --no-dev
 
 # Expose port 80
-EXPOSE 80
+EXPOSE 00
 
 # Set the Apache DocumentRoot to Laravel's public directory
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf
