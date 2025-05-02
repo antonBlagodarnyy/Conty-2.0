@@ -29,6 +29,9 @@ RUN php artisan config:cache && \
     php artisan route:cache && \
     php artisan migrate --force
 
+# Expose the Render default port
+EXPOSE 10000
+
 
 # Set the Apache DocumentRoot to Laravel's public directory
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf
