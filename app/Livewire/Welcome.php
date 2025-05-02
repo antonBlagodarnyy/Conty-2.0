@@ -14,5 +14,8 @@ class Welcome extends Component
             redirect()->to('/dashboard/appointments');
         }
     }
- 
+    public function render()
+    {
+        return view('livewire.welcome');
+    }
 }
