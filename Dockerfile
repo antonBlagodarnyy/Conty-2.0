@@ -17,9 +17,10 @@ WORKDIR /var/www/html
 # Copy app files
 COPY . .
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 775 storage bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html && \
+    find /var/www/html/storage /var/www/html/bootstrap/cache -type d -exec chmod 775 {} \; && \
+    find /var/www/html/storage /var/www/html/bootstrap/cache -type f -exec chmod 664 {} \;
+
 
 # Install Composer
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
