@@ -1,5 +1,4 @@
-
-    <div class="flex flex-col items-center justify-center mt-20">
+<div class="flex flex-col items-center justify-center mt-20">
         <flux:heading class="p-2" size="xl">Conty 2.0</flux:heading>
 
         <div class="container-modals flex">
