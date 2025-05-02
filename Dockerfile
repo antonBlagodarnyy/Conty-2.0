@@ -28,9 +28,9 @@ RUN composer install --optimize-autoloader --no-dev
 RUN php artisan config:cache && \
     php artisan route:cache && \
     php artisan migrate --force
-    
+
 # Expose port 80
-EXPOSE 00
+EXPOSE 80
 
 # Set the Apache DocumentRoot to Laravel's public directory
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf
