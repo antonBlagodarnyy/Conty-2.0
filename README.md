@@ -1,6 +1,6 @@
 # Conty2
 
-**Conty** es una aplicación ligera para la gestión de la **contabilidad de clientes, productos, servicios y citas**.
+**Conty2** es una aplicación ligera para la gestión de la **contabilidad de clientes, productos, servicios y citas**.
 
 ## Funcionalidades
 
