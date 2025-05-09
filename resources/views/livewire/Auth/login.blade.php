@@ -15,7 +15,8 @@
         <flux:field class="mt-2">
             <flux:checkbox wire:model="remember" label="Mantener la sesion iniciada"></flux:checkbox> 
         </flux:field>
-
+        <flux:error name="noUser">@error('noUser') {{ 'Ese usuario no existe' }} @enderror</flux:error>
+       
         <flux:button class="mt-2" type="submit">Iniciar sesion</flux:button>
    
     </form>

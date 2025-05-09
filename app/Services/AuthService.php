@@ -9,13 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthService
 {
-    public function signUp(array $data): User
+    public function signUp(array $data): bool
     {
-        return User::create([
+        $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        return $user->wasRecentlyCreated;
     }
 
     public function login(array $data, $remember)

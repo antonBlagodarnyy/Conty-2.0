@@ -11,7 +11,7 @@
         <flux:field>
             <flux:label for="email">Email</flux:label>
             <flux:input name="email" id="email" type="text" wire:model="email" />
-            <flux:error>@error('email') {{ 'Ese correo no es valido' }} @enderror</flux:error>
+            <flux:error name="email">@error('email') {{ 'Ese correo no es valido' }} @enderror</flux:error>
         </flux:field>
 
         <flux:field>
