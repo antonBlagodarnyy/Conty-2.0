@@ -15,8 +15,10 @@ class quantityNotNegative implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         foreach ($value['selected'] as $selected) {
-            if ( $value['quantity'][intval($selected)] < 0) {
-                $fail('Todas las cantidades seleccionadas deben ser un valor positivo o 0.');
+            if (array_key_exists("quantity",$value)) {
+                if ($value['quantity'][intval($selected)] < 0) {
+                    $fail('Todas las cantidades seleccionadas deben ser un valor positivo o 0.');
+                }
             }
         }
     }
