@@ -10,6 +10,7 @@ class Welcome extends Component
 
     public function mount()
     {
+        //Si hay una sesion activa, entra en el programa
         if (Auth::check()) {
             redirect()->to('/dashboard/appointments');
         }

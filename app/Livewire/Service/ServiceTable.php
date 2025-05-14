@@ -14,8 +14,10 @@ use RamonRietdijk\LivewireTables\Actions\Action;
 
 class ServiceTable extends LivewireTable
 {
+    //Selecciono el modelo que usara la tabla
    protected string $model = Service::class;
 
+   //Recojo el id del usuario en una propiedad protegida al inicializar el componente
    #[Locked]
     public int $userId;
 
@@ -23,13 +25,14 @@ class ServiceTable extends LivewireTable
     {
         $this->userId = Auth::user()->id;
     }
-    
+    //Retoco la query que realiza la tabla para que solo recoja los datos del usuario actual
     /** @return Builder<covariant Model> */
     protected function query(): Builder
     {
         return $this->model()->query()->where('user_id', '=', $this->userId);
     }
 
+    //Creo las columnas
    protected function columns(): array
     {
         return [
@@ -41,14 +44,17 @@ class ServiceTable extends LivewireTable
         ];
     }
 
+    //Creo las acciones
     protected function actions(): array
     {
         return [
             Action::make(
                 __('Eliminar servicio'),
+                //Uso js
                 <<<JS
        if( confirm('Seguro que desea eliminar los servicios seleccionados?')){
          for (const e of \$wire.selected) {
+            //Lanzo la funcion del componente padre
                 \$wire.\$parent.deleteService(e);
             }
         window.location.reload();
@@ -58,6 +64,7 @@ class ServiceTable extends LivewireTable
             Action::make(
                 __('Añadir servicio'),
                 <<<JS
+                //Muestro el modal
                 \$flux.modal('add-service').show(); 
             JS
             )
@@ -69,7 +76,9 @@ class ServiceTable extends LivewireTable
                     if(\$wire.selected.length>1){
                         alert('Escoja un solo servicio para editar.')
                     } else {
+                        //Seteo el servicio a editar
                         \$wire.\$parent.\$set('editedServiceId',\$wire.selected[0]);
+                        //Muestro el modal
                         \$flux.modal('edit-service').show();
                         
                     }

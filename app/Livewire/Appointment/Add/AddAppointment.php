@@ -19,11 +19,14 @@ class AddAppointment extends Component
 
     public function save()
     {
+        //valido los datos introducidos en el formulario
         $this->validate();
 
+        //Creo la nueva cita
         $appointment = new Appointment;
         $appointment->date = $this->date;
 
+        //busco su servicio su cliente y el usuario actual y lo asigno
         $service  = Service::find($this->serviceSelection);
         $appointment->service_id = $service->id;
 
@@ -34,6 +37,7 @@ class AddAppointment extends Component
 
         $appointment->save();
 
+        //Asigno los productos seleccionados a la tabla pivot
         foreach ($this->products['selected'] as $selectedId) {
 
             //Create the pivot table
@@ -52,6 +56,7 @@ class AddAppointment extends Component
 
         $this->js('window.location.reload()');
     }
+    //Las reglas del formulario
     protected function rules()
     {
         return [
@@ -66,7 +71,7 @@ class AddAppointment extends Component
         ];
     }
 
-
+    //Metodo propio de laravel
     public function render()
     {
         return view('livewire.appointment.add.add-appointment');

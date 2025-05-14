@@ -10,9 +10,11 @@ use App\Models\Product;
 
 class EditProduct extends Component
 {
+    //Contiene el id del producto que se va a editar, reactive por que viene del componente padre
     #[Reactive]
     public $editedProductId;
 
+    //Valido los nuevos datos
     #[Validate('required', onUpdate: false)]
     public $newName;
     #[Validate('required|numeric|min:0', onUpdate: false)]
@@ -22,9 +24,10 @@ class EditProduct extends Component
     #[Validate('required|numeric|min:1', onUpdate: false)]
     public $newNetContent;
 
-
+    //Los datos anteriores
     protected $name, $price, $stockInGrams, $netContent;
 
+    //Al abrir el modal
     #[On('clear-edit-form')]
     public function clearForm()
     {

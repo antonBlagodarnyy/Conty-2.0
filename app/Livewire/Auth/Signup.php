@@ -16,13 +16,15 @@ class Signup extends Component
 
     public function save(AuthService $authService)
     {
+        //Valido al usuario
         $validate = $this->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|confirmed',
         ]);
-
+        //Si es valido
         if ($validate) {
+            //Lo registro, hago login y redirijo
             if ($authService->signUp($validate)) {
                 $authService->login($validate, false);
                 redirect()->to('/dashboard/appointments');

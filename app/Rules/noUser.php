@@ -16,7 +16,7 @@ class noUser implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        //
+        //Validamos que el usuario existe
         $existingUser = User::where('email', $value)->exists();
         if(!$existingUser) $fail('Ese usuario no existe.');
     }

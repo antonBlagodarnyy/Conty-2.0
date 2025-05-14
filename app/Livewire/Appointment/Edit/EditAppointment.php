@@ -21,7 +21,7 @@ class EditAppointment extends Component
     public $newDate, $newServiceSelection, $newClientSelection, $newProductsSelection;
     public $date, $serviceSelection, $clientSelection, $productsSelection;
 
-
+    //Al cerrar el modal, limpio el formulario, para que al seleccionar un producto distino para editar los datos sean correctos
     #[On('clear-edit-form')]
     public function clearForm()
     {
@@ -31,6 +31,7 @@ class EditAppointment extends Component
 
     }
 
+    //Al iniciar el modal, recojo los datos de la cita seleccionada
     public function boot()
     {
         $appointment = Appointment::find($this->editedAppointmentId);

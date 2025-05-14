@@ -15,28 +15,32 @@ use RamonRietdijk\LivewireTables\Columns\Column;
 
 class EditSelectServiceTable extends  LivewireTable
 {
+    //Selecciono el modelo que usara la tabla
     protected string $model = Service::class;
 
+    //Recogo el id del usuario en una propiedad protegida al inicializar el componente
     #[Locked]
     public int $userId;
-
     public function mount()
     {
         $this->userId = Auth::user()->id;
     }
-    
+    //Retoco la query que realiza la tabla para que solo recoja los datos del usuario actual
     /** @return Builder<covariant Model> */
     protected function query(): Builder
     {
         return $this->model()->query()->where('services.user_id', '=', $this->userId);
     }
 
+    //Esta variable sera la que se mande al componente AddAppointment como clientSelection
     #[Modelable]
     public $selection;
 
+    //Los servicios actuales de la cita
     #[Reactive]
     public $serviceSelection;
 
+    //Actualizo la seleccion de servicios para que sean los mismos que la cita seleccionada
     #[On('updateSelection')]
     public function updateSelection()
     {

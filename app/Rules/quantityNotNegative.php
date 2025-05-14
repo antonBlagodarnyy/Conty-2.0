@@ -16,6 +16,7 @@ class quantityNotNegative implements ValidationRule
     {
         foreach ($value['selected'] as $selected) {
             if (array_key_exists("quantity",$value)) {
+                //Validamos que la cantidad seleccionada sea mayor a 0
                 if ($value['quantity'][intval($selected)] < 0) {
                     $fail('Todas las cantidades seleccionadas deben ser un valor positivo o 0.');
                 }

@@ -7,12 +7,15 @@ use Livewire\Component;
 
 class Services extends Component
 {
+    //Guardo el servicio editado
     public $editedServiceId;
 
-    public function deleteClient($id){
+    //Funcion para eliminar el servicio
+    public function deleteService($id){
         Service::where('id',$id)->delete();
     }
 
+    //Declaro los eventos
     public function clearAddForm(){
         $this->dispatch('clear-add-form');
     }

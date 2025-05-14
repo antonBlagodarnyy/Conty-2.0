@@ -15,10 +15,13 @@ class productInStock implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
+        //Recorremos los productos seleccionados
         foreach ($value['selected'] as $selected) {
           
             if (isset($value['quantity'][intval($selected)])) {
                 $product = Product::find($selected);
+
+                //Validamos que la cantidad seleccionada exista en stock
                 if ($product->stockInGrams < $value['quantity'][intval($selected)]) {
                     $fail('No hay suficiente stock.');
                 }

@@ -16,6 +16,7 @@ class selectedHaveQuantityRule implements ValidationRule
     {
         //
         foreach ($value['selected'] as $selected) {
+            //Validamos que todos los productos tengan una cantidad
             if (!isset($value['quantity'][intval($selected)]) || $value['quantity'][intval($selected)] == "") {
                 $fail('Todos los productos seleccionados deben tener una cantidad.');
             }

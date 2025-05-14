@@ -10,11 +10,13 @@ use Livewire\Component;
 
 class AddService extends Component
 {
+    //Las vars del formulario con sus validaciones
     #[Validate('required', onUpdate: false)]
     public $name;
     #[Validate('required|min:1', onUpdate: false)]
     public $charge;
 
+    //Al limpiar el formulario reinicio las vars
     #[On('clear-add-form')]
     public function clearForm()
     {

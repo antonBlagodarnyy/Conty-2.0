@@ -9,8 +9,10 @@ use App\Models\Client;
 
 class Clients extends Component
 {
+    //Guardo el cliente editado
     public $editedClientId;
 
+    //Declaro los eventos
     public function clearAddForm(){
         $this->dispatch('clear-add-form');
     }
@@ -18,6 +20,7 @@ class Clients extends Component
         $this->dispatch('clear-edit-form');
     }
     
+    //Funcion para borrar al cliente
     public function deleteClient($id){
         Client::where('id',$id)->delete();
     }

@@ -10,16 +10,20 @@ use Livewire\Attributes\Reactive;
 
 class EditService extends Component
 {
+    //Contiene el id del servicio que se va a editar, reactive por que viene del componente padre
     #[Reactive]
     public $editedServiceId;
 
+    //Valido los nuevos datos
     #[Validate('required', onUpdate: false)]
     public $newName;
     #[Validate('required|min:1', onUpdate: false)]
     public $newCharge;
 
+    //Los datos anteriores
     protected $name, $charge;
 
+    //Al cerrar el modal
     #[On('clear-edit-form')]
     public function clearForm()
     {
@@ -27,6 +31,7 @@ class EditService extends Component
         $this->newCharge = "";
     }
 
+    //Al abrir el modal
     public function boot()
     {
         $service = Service::find($this->editedServiceId);

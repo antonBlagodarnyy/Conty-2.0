@@ -8,8 +8,10 @@ use App\Models\Product;
 
 class Products extends Component
 {
+    //Guardo el producto editado
     public $editedProductId;
 
+    //Declaro los eventos
     public function clearAddForm(){
         $this->dispatch('clear-add-form');
     }
@@ -17,6 +19,7 @@ class Products extends Component
         $this->dispatch('clear-edit-form');
     }
 
+    //Funcion para borrar al producto
     public function deleteProduct($id){
         Product::where('id',$id)->delete();
     }
