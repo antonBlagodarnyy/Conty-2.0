@@ -18,6 +18,8 @@ WORKDIR /var/www/html
 
 COPY . .
 
+COPY ./Docker/entrypoint.sh /docker/entrypoint.sh
+
 RUN chmod +x /docker/entrypoint.sh
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
