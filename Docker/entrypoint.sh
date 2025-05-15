@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PORT=${PORT:-8000}
+PORT=10000
 
 php artisan key:generate || echo “Key generate failed”
 

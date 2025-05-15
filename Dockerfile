@@ -30,6 +30,6 @@ RUN rm -rf node_modules package-lock.json
 
 RUN apt-get clean
 
-ENV PORT=8000
+EXPOSE 10000
 
 ENTRYPOINT [ “docker/entrypoint.sh” ]
