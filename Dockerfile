@@ -1,43 +1,20 @@
-# Use an official PHP image with necessary extensions
-FROM php:8.3-apache
+FROM richarvey/nginx-php-fpm:3.1.6
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git zip unzip libzip-dev libpng-dev libonig-dev libxml2-dev curl \
-    && docker-php-ext-install pdo pdo_mysql zip
-
-# Enable Apache mod_rewrite
-RUN a2enmod rewrite
-
-
-
-# Set working directory
-WORKDIR /var/www/html
-
-# Copy app files
 COPY . .
 
-RUN chown -R www-data:www-data /var/www/html && \
-    find /var/www/html/storage /var/www/html/bootstrap/cache -type d -exec chmod 775 {} \; && \
-    find /var/www/html/storage /var/www/html/bootstrap/cache -type f -exec chmod 664 {} \;
+# Image config
+ENV SKIP_COMPOSER 1
+ENV WEBROOT /var/www/html/public
+ENV PHP_ERRORS_STDERR 1
+ENV RUN_SCRIPTS 1
+ENV REAL_IP_HEADER 1
 
+# Laravel config
+ENV APP_ENV production
+ENV APP_DEBUG false
+ENV LOG_CHANNEL stderr
 
-# Install Composer
-COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+# Allow composer to run as root
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
-# Install PHP dependencies
-RUN composer install --optimize-autoloader --no-dev
-
-
-
-RUN php artisan config:cache && \
-    php artisan route:cache && \
-    php artisan view:cache && \
-    php artisan migrate --force
-
-# Expose the Render default port
-EXPOSE 10000
-
-
-# Set the Apache DocumentRoot to Laravel's public directory
-RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf
+CMD ["/start.sh"]
