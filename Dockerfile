@@ -24,5 +24,6 @@ RUN chown -R www-data:www-data /var/www \
     && chmod -R 755 /var/www/storage /var/www/bootstrap/cache
 
 # Expose port 9000 and start PHP-FPM
-EXPOSE 1000
+EXPOSE 9000
+
 CMD ["php-fpm"]
