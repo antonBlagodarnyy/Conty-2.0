@@ -1,35 +1,28 @@
-FROM php:8.4-apache as php
+FROM php:8.3-fpm
 
-RUN apt-get update -y
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git curl zip unzip libpng-dev libonig-dev libxml2-dev libzip-dev \
+    libpq-dev libjpeg-dev libfreetype6-dev libssl-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo pdo_mysql zip mbstring exif pcntl bcmath gd
 
-RUN apt-get install -y unzip libpq-dev libcurl4-gnutls-dev
+# Install Composer
+COPY --from=composer:2.6 /usr/bin/composer /usr/bin/composer
 
-RUN docker-php-ext-install pdo pdo_mysql bcmath
+# Set working directory
+WORKDIR /var/www
 
-RUN apt-get install nano
-
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
-
-&& apt-get install -y nodejs
-
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-WORKDIR /var/www/html
-
+# Copy application code
 COPY . .
 
-COPY ./Docker/entrypoint.sh /docker/entrypoint.sh
-
-RUN chmod +x /docker/entrypoint.sh
-
-ENV COMPOSER_ALLOW_SUPERUSER=1
-
+# Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-RUN rm -rf node_modules package-lock.json
+# Set proper permissions
+RUN chown -R www-data:www-data /var/www \
+    && chmod -R 755 /var/www/storage /var/www/bootstrap/cache
 
-RUN apt-get clean
-
-EXPOSE 10000
-
-ENTRYPOINT [ “docker/entrypoint.sh” ]
+# Expose port 9000 and start PHP-FPM
+EXPOSE 1000
+CMD ["php-fpm"]

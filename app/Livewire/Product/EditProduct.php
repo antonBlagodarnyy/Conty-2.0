@@ -14,14 +14,13 @@ class EditProduct extends Component
     #[Reactive]
     public $editedProductId;
 
-    //Valido los nuevos datos
-    #[Validate('required', onUpdate: false)]
+
     public $newName;
-    #[Validate('required|numeric|min:0', onUpdate: false)]
+    
     public $newPrice;
-    #[Validate('required|numeric|min:0', onUpdate: false)]
+
     public $newStockInGrams;
-    #[Validate('required|numeric|min:1', onUpdate: false)]
+
     public $newNetContent;
 
     //Los datos anteriores
