@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\client;
+namespace App\Livewire\Client;
 
 use App\Models\Client;
 use Illuminate\Database\Eloquent\Builder;

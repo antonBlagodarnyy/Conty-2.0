@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\auth;
+namespace App\Livewire\Auth;
 
 
 
