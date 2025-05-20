@@ -21,7 +21,8 @@ Conty calcula:
 - Basado en los **gramos utilizados**, el **contenido neto** y el **precio unitario** de cada producto involucrado
 
 ## Link
--La aplicación esta desplegada en [Railway](https://conty-20-production.up.railway.app/)
+-La aplicación esta desplegada en Railway
+-[Conty2](https://conty-20-production.up.railway.app/)
 
 ---
 
