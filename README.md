@@ -20,5 +20,8 @@ Conty calcula:
 - 💰 **Costos** y **beneficios** por cita
 - Basado en los **gramos utilizados**, el **contenido neto** y el **precio unitario** de cada producto involucrado
 
+## Link
+-La aplicación esta desplegada en [Railway](https://conty-20-production.up.railway.app/)
+
 ---
 
